@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Vpn Lessor
+Comment=Connect to Lessor vpn
+Name[da]=Vpn Lessor
+Comment[da]=Forbind til vpn hos Lessor
+Exec=nmcli con up lessor-vpn

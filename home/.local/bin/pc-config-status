@@ -1,0 +1,31 @@
+#!/bin/bash
+
+function usage() {
+	cat <<- EOM
+		Usage:
+
+		showDiff
+		   - list files that are not identical between pc-config/home and $HOME
+		showDiff path/to/file
+		   - launch meld ./path/to/file $HOME/path/to/file
+	
+	EOM
+}
+
+for expectedFile in etc home etcConfig.sh homeConfig.sh setup.sh; do 
+	if [[ ! -a "$expectedFile" ]]; then
+		echo "This ($(pwd)) doesn't look like a pc-config directory"
+		exit 1
+	fi
+done
+
+[[ -z "$2" ]] || { usage; exit 1; }
+
+if [[ -z "$1" ]]; then
+	for file in $(find home -type f -printf "%P\n"); do 
+		cmp -s home/$file ~/$file || echo home/$file
+	done
+else 
+	targetfile=$(echo $1 | cut -c 5-) 
+	meld $HOME$targetfile $1 
+fi
