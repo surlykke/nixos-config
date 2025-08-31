@@ -1,11 +1,12 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 
 {
     home.username = "chr";
     home.homeDirectory = "/home/chr";
 
   # Packages that should be installed to the user profile.
-    home.packages = with pkgs; [
+    home.packages = 
+	(with pkgs; [
         alacritty
         blueman
         curl
@@ -18,7 +19,7 @@
         gtklock
         htop
         #openfortivpn
-        #openjdk-17-jdk
+        jdk21
         #openjdk-17-source
         pavucontrol
         playerctl
@@ -52,9 +53,14 @@
         zip
         unzip
         adwaita-icon-theme
-        neovim
         fish
-    ];
+        neovim
+    ])
+
+	++
+	(with pkgs-unstable; [
+		dbvisualizer
+	]);
 
 
     home.file = {
