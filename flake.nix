@@ -37,6 +37,11 @@
 							};
 							home-manager.useGlobalPkgs = true;
 							home-manager.useUserPackages = true;
+							fonts.fontconfig.enable = true;
+							fonts.packages = with pkgs; [
+							  nerd-fonts.fira-code
+							  nerd-fonts.droid-sans-mono
+							];
 							home-manager.users.chr = import ./chr.nix;
 						}	
 					];

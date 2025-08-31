@@ -24,9 +24,9 @@
         pavucontrol
         playerctl
         ripgrep
-        # sway
-        #swaylock
-        #swayidle
+        sway
+        swaylock
+        swayidle
         unclutter
         xdg-desktop-portal
         xdg-desktop-portal-wlr
@@ -55,13 +55,12 @@
         adwaita-icon-theme
         fish
         neovim
-    ])
+	])
 
 	++
 	(with pkgs-unstable; [
 		dbvisualizer
 	]);
-
 
     home.file = {
         ".config/alacritty" = {
