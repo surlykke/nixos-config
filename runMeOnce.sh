@@ -19,4 +19,7 @@ EOF
 sudo mv /etc/nixos /etc/nixos-backup-of-initial
 sudo ln -s $(realpath $(dirname $0)) /etc/nixos 
 
+git add hardware-configuration.nix
+git add local-configuration.nix
+
 sudo nixos-rebuild switch --flake /etc/nixos#nixos
