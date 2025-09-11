@@ -41,6 +41,9 @@
 							fonts.packages = with pkgs; [
 							  nerd-fonts.fira-code
 							  nerd-fonts.droid-sans-mono
+							  liberation_ttf
+							  ttf_bitstream_vera
+							  dejavu_fonts
 							];
 							home-manager.users.chr = import ./chr.nix;
 						}	

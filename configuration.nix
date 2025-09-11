@@ -7,6 +7,9 @@
 	];
 
 	boot.kernelPackages = pkgs.linuxPackages_latest;
+	boot.loader.systemd-boot.configurationLimit = 5;
+	boot.loader.systemd-boot.memtest86.enable = true;
+
 	hardware.graphics.enable = true;
 
 	# Networking
@@ -15,6 +18,7 @@
 	networking.firewall.allowedTCPPorts = [ ];
 	networking.firewall.allowedUDPPorts = [ ];
 
+	hardware.bluetooth.enable = true; 
 
 	# Locality stuff 
 	time.timeZone = "Europe/Copenhagen";
@@ -46,9 +50,20 @@
 
 	# Packages and services
 	nixpkgs.config.allowUnfree = true;
-	environment.systemPackages = with pkgs; [];
+	environment.systemPackages = with pkgs; [
+		memtest86plus
+		bluez
+	];
 	services.openssh.enable = true;
 	security.polkit.enable = true;
+
+	security.rtkit.enable = true;
+  		services.pipewire = {
+		enable = true; # if not already enabled
+		alsa.enable = true;
+		alsa.support32Bit = true;
+		pulse.enable = true;
+	};
 
 	# From whence we came
 	system.stateVersion = "25.05"; # Don't change

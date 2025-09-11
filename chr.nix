@@ -18,6 +18,8 @@
         gopls
         gtklock
         htop
+		pciutils
+		usbutils
         #openfortivpn
         jdk21
         #openjdk-17-source
@@ -30,8 +32,8 @@
         unclutter
         xdg-desktop-portal
         xdg-desktop-portal-wlr
-            #lxpolkit
-        #lxappearance
+			#lxpolkit
+			#lxappearance
         bridge-utils
         #cpu-checker
         #libvirt-clients
@@ -55,6 +57,16 @@
         adwaita-icon-theme
         fish
         neovim
+		brave
+		wl-clipboard
+		cowsay
+		bash
+		pysolfc
+		nix-index
+		networkmanagerapplet
+		slack
+		# refude 
+		kdePackages.wayland.dev
 	])
 
 	++
