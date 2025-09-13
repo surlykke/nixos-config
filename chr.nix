@@ -65,6 +65,7 @@
 		nix-index
 		networkmanagerapplet
 		slack
+		dmidecode
 		# refude 
 		kdePackages.wayland.dev
 	])
