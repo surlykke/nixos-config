@@ -18,17 +18,12 @@
         gopls
         gtklock
         htop
-		pciutils
-		usbutils
-        #openfortivpn
+       #openfortivpn
         jdk21
         #openjdk-17-source
         pavucontrol
         playerctl
         ripgrep
-        sway
-        swaylock
-        swayidle
         unclutter
         xdg-desktop-portal
         xdg-desktop-portal-wlr
@@ -54,11 +49,10 @@
         xdg-user-dirs
         zip
         unzip
-        adwaita-icon-theme
         fish
         neovim
 		brave
-		wl-clipboard
+		google-chrome
 		cowsay
 		bash
 		pysolfc
@@ -67,7 +61,8 @@
 		slack
 		dmidecode
 		# refude 
-		kdePackages.wayland.dev
+		direnv
+		nix-direnv
 	])
 
 	++

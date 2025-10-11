@@ -39,6 +39,19 @@
 
 	# Users
 	programs.fish.enable = true;
+	programs.sway = {
+    	enable = true;
+    	wrapperFeatures.gtk = true; # so that gtk works properly
+    	extraPackages = with pkgs; [
+      		swaylock
+      		swayidle
+      		wl-clipboard
+      		mako # notification daemon
+      		alacritty # terminal
+    	];
+  	};	
+
+
 	users.users.chr = {
 		isNormalUser = true;
 		description = "Christian Surlykke";
@@ -53,7 +66,11 @@
 	environment.systemPackages = with pkgs; [
 		memtest86plus
 		bluez
-	];
+		pciutils
+		usbutils
+        adwaita-icon-theme
+    	numix-icon-theme-circle
+ 	];
 	services.openssh.enable = true;
 	security.polkit.enable = true;
 
