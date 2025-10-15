@@ -6,20 +6,6 @@
 		./local-configuration.nix
 	];
 
-	boot.kernelPackages = pkgs.linuxPackages_latest;
-	boot.loader.systemd-boot.configurationLimit = 5;
-	boot.loader.systemd-boot.memtest86.enable = true;
-
-	hardware.graphics.enable = true;
-
-	# Networking
-	networking.networkmanager.enable = true;
-	networking.firewall.enable = false;
-	networking.firewall.allowedTCPPorts = [ ];
-	networking.firewall.allowedUDPPorts = [ ];
-
-	hardware.bluetooth.enable = true; 
-
 	# Locality stuff 
 	time.timeZone = "Europe/Copenhagen";
 	i18n.defaultLocale = "da_DK.UTF-8";
@@ -36,55 +22,98 @@
 	};
 	console.keyMap = "dk-latin1";
 
-
-	# Users
-	programs.fish.enable = true;
-	programs.sway = {
-    	enable = true;
-    	wrapperFeatures.gtk = true; # so that gtk works properly
-    	extraPackages = with pkgs; [
-      		swaylock
-      		swayidle
-      		wl-clipboard
-      		mako # notification daemon
-      		alacritty # terminal
-    	];
-  	};	
-
-
-	users.users.chr = {
-		isNormalUser = true;
-		description = "Christian Surlykke";
-		extraGroups = [ "networkmanager" "wheel" ];
-		shell = pkgs.fish;
-		packages = with pkgs; [];
+	hardware = {
+		graphics.enable = true;
+		bluetooth = {
+			enable = true; 
+		};
 	};
-	services.getty.autologinUser = "chr";
+
+	boot = {
+		kernelPackages = pkgs.linuxPackages_latest;
+		loader.systemd-boot = {
+			configurationLimit = 5;
+			memtest86.enable = true;
+		};
+	};
+
+	# Networking
+	networking = {
+		networkmanager.enable = true;
+		firewall = {
+			enable = false;
+			allowedTCPPorts = [ ];
+			allowedUDPPorts = [ ];
+		};
+	};
 
 	# Packages and services
 	nixpkgs.config.allowUnfree = true;
-	environment.systemPackages = with pkgs; [
-		memtest86plus
-		bluez
-		pciutils
-		usbutils
-        adwaita-icon-theme
-    	numix-icon-theme-circle
- 	];
-	services.openssh.enable = true;
-	security.polkit.enable = true;
 
-	security.rtkit.enable = true;
-  		services.pipewire = {
-		enable = true; # if not already enabled
-		alsa.enable = true;
-		alsa.support32Bit = true;
-		pulse.enable = true;
+	programs = {
+		fish.enable = true;
+		sway = {
+			enable = true;
+			wrapperFeatures.gtk = true; # so that gtk works properly
+			extraPackages = with pkgs; [
+				swaylock
+				swayidle
+				wl-clipboard
+				mako # notification daemon
+				alacritty # terminal
+			];
+		};	
+		xwayland.enable = true;
+	};
+
+	services = {
+		getty.autologinUser = "chr";
+
+
+		avahi = {
+		  enable = true;
+		  nssmdns4 = true;
+		  openFirewall = true;
+		};
+
+		printing = {
+		  enable = true;
+		  drivers = with pkgs; [
+			cups-filters
+			cups-browsed
+		  ];
+		};
+
+		pipewire = {
+			enable = true; # if not already enabled
+			alsa.enable = true;
+			alsa.support32Bit = true;
+			pulse.enable = true;
+		};
+
+		upower.enable = true;
+
+		openssh.enable = true;
+	};	
+
+	security = {
+		polkit.enable = true;
+
+		rtkit.enable = true;
+	};
+
+	users = {
+			users.chr = {
+			isNormalUser = true;
+			description = "Christian Surlykke";
+			extraGroups = [ "networkmanager" "wheel" ];
+			shell = pkgs.fish;
+			packages = with pkgs; [];
+		};
 	};
 
 	# From whence we came
 	system.stateVersion = "25.05"; # Don't change
-
 	
 	nix.settings.experimental-features = ["nix-command" "flakes"];
 }

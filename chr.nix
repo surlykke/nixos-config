@@ -14,8 +14,6 @@
         flameshot
         git
         #git-delta
-        go
-        gopls
         gtklock
         htop
        #openfortivpn
@@ -25,6 +23,7 @@
         playerctl
         ripgrep
         unclutter
+		waybar
         xdg-desktop-portal
         xdg-desktop-portal-wlr
 			#lxpolkit
@@ -56,13 +55,25 @@
 		cowsay
 		bash
 		pysolfc
-		nix-index
+	#	nix-index
+		imagemagick.dev
 		networkmanagerapplet
 		slack
 		dmidecode
 		# refude 
 		direnv
 		nix-direnv
+			#		pkg-config
+		lazygit
+		libnotify
+		dunst
+		pciutils
+		usbutils
+		killall
+        adwaita-icon-theme
+    	numix-icon-theme-circle
+		speedcrunch
+		jq
 	])
 
 	++

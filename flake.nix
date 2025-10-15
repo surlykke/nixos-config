@@ -4,11 +4,13 @@
     inputs = { 
         nixpkgs.url = "nixpkgs/nixos-25.05"; 
 		nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-        home-manager.url = "github:nix-community/home-manager/release-25.05"; 
+		nix-index-database.url = "github:nix-community/nix-index-database";
+    	nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+		home-manager.url = "github:nix-community/home-manager/release-25.05"; 
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    outputs = { self, nixpkgs, nixpkgs-unstable, home-manager,... }@inputs: 
+    outputs = { self, nixpkgs, nixpkgs-unstable, nix-index-database, home-manager,... }@inputs: 
 		let 
 			system = "x86_64-linux";
 			lib = nixpkgs.lib;
@@ -30,6 +32,7 @@
 					};
 					modules = [ 
 						./configuration.nix
+						nix-index-database.nixosModules.nix-index
 						home-manager.nixosModules.home-manager
 						{
 							home-manager.extraSpecialArgs = {
