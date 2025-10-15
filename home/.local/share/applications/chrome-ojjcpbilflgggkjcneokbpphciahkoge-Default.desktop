@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Refude desktop
+Exec=google-chrome-stable --profile-directory=Default --app-id=ojjcpbilflgggkjcneokbpphciahkoge
+Icon=chrome-ojjcpbilflgggkjcneokbpphciahkoge-Default
+StartupWMClass=crx_ojjcpbilflgggkjcneokbpphciahkoge

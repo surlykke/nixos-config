@@ -43,7 +43,7 @@ color = '#c53b53'
 TERM = "xterm-256color"
 
 [font]
-size = 13
+size = 11
 
 [font.bold]
 family = "monospace"
@@ -81,3 +81,5 @@ mods = "Control"
 
 [scrolling]
 history = 100000
+
+

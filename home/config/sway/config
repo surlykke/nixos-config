@@ -143,6 +143,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
+	#swaybar_command waybar
     position top
 	font pango:DejaVu Sans Mono 14 
 	status_command i3status
@@ -201,6 +202,7 @@ bindsym $mod+o exec layout
 focus_on_window_activation focus
 
 output * max_render_time off
+output eDP-1 scale 1.1
 seat * hide_cursor when-typing enable
 
 input type:keyboard {
