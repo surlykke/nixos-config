@@ -1,9 +1,13 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, ... }:
 
+let 
+	home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
+in
 {
 	imports = [ 
 		./hardware-configuration.nix
 		./local-configuration.nix
+		(import "${home-manager}/nixos")
 	];
 
 	# Locality stuff 
@@ -112,8 +116,117 @@
 		};
 	};
 
+	 environment.systemPackages = 
+        	with pkgs; [
+				home-manager  
+				#alacritty
+				blueman
+				curl
+				feh
+				flameshot
+				git
+				#git-delta
+				gtklock
+				htop
+#				openfortivpn
+				jdk21
+				#openjdk-17-source
+				pavucontrol
+				playerctl
+				ripgrep
+				unclutter
+				waybar
+				xdg-desktop-portal
+				xdg-desktop-portal-wlr
+#				lxpolkit
+#				lxappearance
+				bridge-utils
+				#cpu-checker
+				#libvirt-clients
+				#libvirt-daemon
+				#libvirt-daemon-system
+				#virtinst
+				#virt-manager
+				#qemu-system
+				#qemu-kvm
+				#firewall-config
+				#firewalld
+				#clamav-freshclam
+				#clamav-daemon
+				#net-tools
+				gcc
+				dmenu
+				i3status
+				xdg-user-dirs
+				zip
+				unzip
+				fish
+				neovim
+				brave
+				google-chrome
+				cowsay
+				bash
+				pysolfc
+				imagemagick.dev
+				networkmanagerapplet
+				slack
+				dmidecode
+				# refude 
+				direnv
+				nix-direnv
+					#		pkg-config
+				lazygit
+				libnotify
+				dunst
+				pciutils
+				usbutils
+				killall
+				adwaita-icon-theme
+				numix-icon-theme-circle
+				speedcrunch
+				jq
+#				dbvisualizer
+			];
+	
+
+	home-manager.users.chr = {config, pkgs, ...} :
+		{
+		home.stateVersion = "18.09";
+		home.file = {
+			".config/alacritty" = {
+			    source = config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/config/alacritty";
+			};
+			".config/fish" = {
+			    source = config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/config/fish";
+			};
+			".config/gtk-3.0" = {
+			    source = config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/config/gtk-3.0";
+			};
+			".config/i3status" = {
+			    source = config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/config/i3status";
+			};
+			".config/lazygit" = {
+			    source = config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/config/lazygit";
+			};
+			".config/mimeapps.list" = {
+			    source = config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/config/mimeapps.list";
+			};
+			".config/nvim" = {
+			    source = config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/config/nvim";
+			};
+			".config/sway" = {
+			    source = config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/config/sway";
+			};
+			".local/bin" = {
+			    source =  config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/.local/bin";
+			};
+			".local/share/applications" = {
+			    source =  config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/.local/share/applications";
+			};
+		};
+	};
+
 	# From whence we came
 	system.stateVersion = "25.05"; # Don't change
 	
-	nix.settings.experimental-features = ["nix-command" "flakes"];
 }

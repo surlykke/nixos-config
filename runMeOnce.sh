@@ -15,13 +15,11 @@ $(grep boot.loader /etc/nixos/configuration.nix)
 }
 EOF
 
-git add -N hardware-configuration.nix local-configuration.nix
-
 sudo mv /etc/nixos /etc/nixos-backup-of-initial
 
 cat <<-EOF
 	Setup done.
 	You can now run:
 
-		sudo nixos-rebuild switch --flake $(pwd)
+		sudo nixos-rebuild switch -I nixos-config=$(pwd)/configuration.nix
 EOF
