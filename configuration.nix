@@ -158,6 +158,7 @@ in
 				dmenu
 				i3status
 				xdg-user-dirs
+			    shared-mime-info
 				zip
 				unzip
 				fish
@@ -171,7 +172,6 @@ in
 				networkmanagerapplet
 				slack
 				dmidecode
-				# refude 
 				direnv
 				nix-direnv
 					#		pkg-config
@@ -185,6 +185,7 @@ in
 				numix-icon-theme-circle
 				speedcrunch
 				jq
+				nix-index
 #				dbvisualizer
 			];
 	
@@ -192,6 +193,10 @@ in
 	home-manager.users.chr = {config, pkgs, ...} :
 		{
 		home.stateVersion = "18.09";
+		home.packages = [
+			(pkgs.callPackage /home/chr/projekter/refude/package.nix { })	
+			(pkgs.callPackage /home/chr/projekter/utils/package.nix { })	
+		];
 		home.file = {
 			".config/alacritty" = {
 			    source = config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/config/alacritty";
@@ -217,14 +222,15 @@ in
 			".config/sway" = {
 			    source = config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/config/sway";
 			};
-			".local/bin" = {
-			    source =  config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/.local/bin";
-			};
-			".local/share/applications" = {
-			    source =  config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/.local/share/applications";
-			};
+#			".local/bin" = {
+#			    source =  config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/.local/bin";
+#			};
+#			".local/share/applications" = {
+#			    source =  config.lib.file.mkOutOfStoreSymlink "/home/chr/nixos/home/.local/share/applications";
+#			};
 		};
 	};
+
 
 	# From whence we came
 	system.stateVersion = "25.05"; # Don't change

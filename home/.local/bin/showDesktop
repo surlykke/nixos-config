@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-nohup google-chrome-stable --app-id=ojjcpbilflgggkjcneokbpphciahkoge >/dev/null 2>/dev/null &
-

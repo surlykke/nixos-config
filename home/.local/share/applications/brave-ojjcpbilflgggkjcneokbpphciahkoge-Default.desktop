@@ -1,9 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Version=1.0
-Terminal=false
-Type=Application
-Name=Refude desktop
-Exec=/nix/store/0sy8wr2dk0f7rxv8y52br9frki54rb25-brave-1.81.137/opt/brave.com/brave/brave-browser --profile-directory=Default --app-id=ojjcpbilflgggkjcneokbpphciahkoge
-Icon=brave-ojjcpbilflgggkjcneokbpphciahkoge-Default
-StartupWMClass=crx_ojjcpbilflgggkjcneokbpphciahkoge

@@ -1,5 +1,0 @@
-#!/usr/bin/env fish
-set energynow (math  -- (cat /sys/class/power_supply/BAT*/energy_now | tr  '\n' '+' | sed -e 's/+$//'))
-set energyfull (math  -- (cat /sys/class/power_supply/BAT*/energy_full | tr  '\n' '+' | sed -e 's/+$//'))
-echo (math -s2 -- 100 \* $energynow / $energyfull)
-
