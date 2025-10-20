@@ -197,7 +197,7 @@ in
 		home.packages = [
 			(pkgs.callPackage /home/chr/projekter/refude/package.nix { })	
 			(pkgs.callPackage /home/chr/projekter/windowarranger/package.nix { })	
-			(pkgs.callPackage /home/chr/projekter/utils/package.nix { })	
+			(pkgs.callPackage misc/package.nix { })	
 		];
 		home.file = {
 			".config/alacritty" = {
