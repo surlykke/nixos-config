@@ -6,12 +6,11 @@ font pango:DejaVu Sans Mono 12
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym XF86MonBrightnessUp exec refudeBrightness +  
-bindsym XF86MonBrightnessDown exec refudeBrightness -  
+bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +5
+bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -5
+bindsym XF86AudioMute exec pulsemixer --toggle-mute
+bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
@@ -202,7 +201,7 @@ bindsym $mod+o exec layout
 focus_on_window_activation focus
 
 output * max_render_time off
-output eDP-1 scale 1.1
+output eDP-1 scale 1.25
 seat * hide_cursor when-typing enable
 
 input type:keyboard {

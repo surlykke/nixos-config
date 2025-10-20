@@ -63,7 +63,6 @@ in
 				swaylock
 				swayidle
 				wl-clipboard
-				mako # notification daemon
 				alacritty # terminal
 			];
 		};	
@@ -132,6 +131,7 @@ in
 				jdk21
 				#openjdk-17-source
 				pavucontrol
+			    pulsemixer
 				playerctl
 				ripgrep
 				unclutter
@@ -165,6 +165,7 @@ in
 				neovim
 				brave
 				google-chrome
+			    firefox
 				cowsay
 				bash
 				pysolfc
@@ -177,13 +178,13 @@ in
 					#		pkg-config
 				lazygit
 				libnotify
-				dunst
 				pciutils
 				usbutils
 				killall
 				adwaita-icon-theme
 				numix-icon-theme-circle
 				speedcrunch
+				brightnessctl
 				jq
 				nix-index
 #				dbvisualizer
@@ -195,6 +196,7 @@ in
 		home.stateVersion = "18.09";
 		home.packages = [
 			(pkgs.callPackage /home/chr/projekter/refude/package.nix { })	
+			(pkgs.callPackage /home/chr/projekter/windowarranger/package.nix { })	
 			(pkgs.callPackage /home/chr/projekter/utils/package.nix { })	
 		];
 		home.file = {
