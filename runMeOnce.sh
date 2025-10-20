@@ -15,22 +15,16 @@ $(grep boot.loader /etc/nixos/configuration.nix)
 }
 EOF
 
-if ls $HOME/projekter/refude >/dev/null 2>/dev/null; then
-	echo $HOME/projekter/refude is in the way. Please move it.
-fi 
+cat <<-EOF > local-projects.nix
+	{ config, pkgs, ... }:
+	{
+		home.packages = [
+	#	(pkgs.callPackage /path/to/my-project/package.nix { })
+		];
+	}
+EOF
 
-if ls $HOME/projekter/windowarranger >/dev/null 2>/dev/null; then
-	echo $HOME/projekter/windowarranger is in the way. Please move it.
-fi 
 
-mkdir -p $HOME/projekter
-
-pushd $HOME/projekter
-
-git clone https://github.com/surlykke/refude
-git clone https://github.com/surlykke/windowarranger
-
-popd 
 
 cat <<-EOF
 	Setup done.

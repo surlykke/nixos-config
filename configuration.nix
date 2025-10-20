@@ -185,8 +185,8 @@ in
 				numix-icon-theme-circle
 				speedcrunch
 				brightnessctl
-				jq
 				nix-index
+				jq
 			];
 	
 
@@ -198,13 +198,13 @@ in
 		nixpkgs.config.allowUnfree = true;
 
 		home.stateVersion = "18.09";
+		imports = [
+			./local-projects.nix
+		];
 		home.packages = [
-			(pkgs.callPackage /home/chr/projekter/refude/package.nix { })	
-			(pkgs.callPackage /home/chr/projekter/windowarranger/package.nix { })	
 			(pkgs.callPackage misc/package.nix { })	
 			pkgs.jetbrains.idea-ultimate		
 			pkgsUnstable.dbvisualizer
-
 		];
 		home.file = {
 			".config/alacritty" = {
