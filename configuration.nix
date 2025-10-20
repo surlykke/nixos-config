@@ -187,17 +187,24 @@ in
 				brightnessctl
 				jq
 				nix-index
-#				dbvisualizer
 			];
 	
 
 	home-manager.users.chr = {config, pkgs, ...} :
+		let 
+		   pkgsUnstable = import <pkgs-unstable> {config = { allowUnfree = true; }; };
+		in
 		{
+		nixpkgs.config.allowUnfree = true;
+
 		home.stateVersion = "18.09";
 		home.packages = [
 			(pkgs.callPackage /home/chr/projekter/refude/package.nix { })	
 			(pkgs.callPackage /home/chr/projekter/windowarranger/package.nix { })	
 			(pkgs.callPackage misc/package.nix { })	
+			pkgs.jetbrains.idea-ultimate		
+			pkgsUnstable.dbvisualizer
+
 		];
 		home.file = {
 			".config/alacritty" = {
