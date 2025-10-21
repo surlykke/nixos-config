@@ -24,17 +24,11 @@ cat <<-EOF > local-projects.nix
 	}
 EOF
 
+echo "Doing initial install"
 
+sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable pkgs-unstable
+sudo nix-channel --update
+sudo nixos-rebuild switch -I nixos-config=$(pwd)/configuration.nix
 
-cat <<-EOF
-	Setup done.
-	You can now run:
-
-		sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable pkgs-unstable
-
-	and then:
-
-		sudo nixos-rebuild switch -I nixos-config=$(pwd)/configuration.nix
-
-	/etc/nixos left in place, but should not be used
-EOF
+echo "Setup done."
+echo "/etc/nixos left in place, but should not be used"
